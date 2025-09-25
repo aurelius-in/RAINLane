@@ -1,4 +1,4 @@
-# RAINLane
+![RL Wordmark](rl_wordmark.png)
 
 **Certified answers, fast.**
 Answer operational and compliance questions from SOPs with structure-aware ingestion, green/yellow routing, task-aware model selection, signed provenance, and a red-team harness for safety.
