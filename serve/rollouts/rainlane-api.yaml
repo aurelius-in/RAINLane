@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: rainlane-api, labels: { app: rainlane-api }, annotations: { "cosign.sigstore.dev/verified": "true" } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: rainlane-api } }
+  template:
+    metadata: { labels: { app: rainlane-api } }
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/OWNER/rainlane-api:sha256-PINNED
+          ports: [{containerPort: 8000}]
+          resources:
+            requests: { cpu: "200m", memory: "256Mi" }
+            limits:   { cpu: "1", memory: "512Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: rainlane-api }
+spec:
+  selector: { app: rainlane-api }
+  ports: [{ port: 80, targetPort: 8000 }]
+
+
