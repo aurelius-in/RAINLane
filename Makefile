@@ -17,5 +17,11 @@ lint:
 	black --check . && isort --check-only .
 precommit:
 	pre-commit run --all-files || true
+coverage:
+	bash scripts/unix/coverage.sh
+compose.up:
+	docker compose up --build -d api
+compose.down:
+	docker compose down
 
 
