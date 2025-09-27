@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from service.schemas import IngestReq, AnswerReq, AnswerCard, GoldSubmit
 from service.model_selector import select_model
 from service.provenance import notarize
@@ -9,6 +10,15 @@ from green_lane.rules.router import route as route_lane
 from yellow_lane.fallback.answer import answer_yellow
 
 app = FastAPI(title="RainLane")
+
+# CORS (relaxed defaults; tighten in prod)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 DB = {"docs": {}, "gold": [], "answers": {}}
 
@@ -62,5 +72,23 @@ def provenance(answer_id: str):
 def gold_submit(req: GoldSubmit):
     DB["gold"].append(req.model_dump())
     return {"ok": True, "count": len(DB["gold"]) }
+
+
+@app.get("/healthz")
+def healthz():
+    return {"ok": True}
+
+
+try:
+    from pathlib import Path
+
+    VERSION = (Path(__file__).resolve().parents[1] / "VERSION").read_text().strip()
+except Exception:
+    VERSION = "0.0.0"
+
+
+@app.get("/version")
+def version():
+    return {"version": VERSION}
 
 

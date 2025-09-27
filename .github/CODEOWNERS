@@ -1,0 +1,8 @@
+# Default owners
+* @aurelius-in/core
+
+# Service
+/service/ @aurelius-in/backend
+
+# Policies
+/policy/ @aurelius-in/platform
