@@ -1,0 +1,11 @@
+chore: tidy up commit style and docs
+
+# Keep it friendly, short, and human. Avoid jargon unless users care.
+# Don't mention "batch". Focus on what changed and why.
+# Subject: ~50 chars is great; <=72 hard limit.
+
+# Details (optional)
+# - What changed
+# - Why it helps users
+# - Any notable technical bits users should know
+
