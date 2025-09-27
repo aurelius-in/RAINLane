@@ -23,5 +23,9 @@ compose.up:
 	docker compose up --build -d api
 compose.down:
 	docker compose down
+typecheck:
+	mypy .
+security:
+	bandit -q -r service ingest green-lane yellow-lane || true
 
 

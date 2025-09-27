@@ -8,7 +8,9 @@ from ingest.chunking.sectioner import to_sections
 from ingest.hashing.hasher import hash_doc
 from green_lane.rules.router import route as route_lane
 from yellow_lane.fallback.answer import answer_yellow
+from service.logging_setup import configure_logging
 
+configure_logging()
 app = FastAPI(title="RainLane")
 
 # CORS (relaxed defaults; tighten in prod)
@@ -30,6 +32,11 @@ def ingest(req: IngestReq):
     doc_hash = hash_doc(raw)
     DB["docs"][doc_hash] = {"sections": sections, "meta": {"path": req.path}}
     return {"doc_hash": doc_hash, "sections": len(sections)}
+
+
+@app.get("/")
+def root():
+    return {"name": "RainLane", "docs": "/docs", "health": "/healthz", "ready": "/readyz", "version": "/version"}
 
 
 @app.post("/v1/answer", response_model=AnswerCard)
@@ -77,6 +84,12 @@ def gold_submit(req: GoldSubmit):
 @app.get("/healthz")
 def healthz():
     return {"ok": True}
+
+
+@app.get("/readyz")
+def readyz():
+    # Basic readiness: app started
+    return {"ready": True}
 
 
 try:
