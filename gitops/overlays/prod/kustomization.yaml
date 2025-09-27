@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../serve/kserve/inferenceservice.yaml
+  - ../../../../serve/rollouts/rainlane-api.yaml
+images:
+  - name: ghcr.io/OWNER/rainlane-api
+    newTag: sha256:PINNED_PROD_DIGEST
