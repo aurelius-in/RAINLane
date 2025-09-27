@@ -1,0 +1,13 @@
+tasks:
+  extractive: { provider: "azure-openai:gpt-4o-mini", temp: 0.0 }
+  table_lookup: { provider: "local:llama-3.1-8b-instruct", temp: 0.0 }
+  math_units: { provider: "anthropic:opus", tools: ["units"], temp: 0.0 }
+routing:
+  rules:
+    - if: "has_table_citation"
+      task: table_lookup
+    - if: "requires_units"
+      task: math_units
+    - else: extractive
+
+

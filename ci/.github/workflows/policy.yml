@@ -1,0 +1,11 @@
+name: policy
+on: [pull_request]
+jobs:
+  k8s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install conftest || pip install conftest || true
+      - run: conftest test serve/rollouts/rainlane-api.yaml -p policy/opa
+
+

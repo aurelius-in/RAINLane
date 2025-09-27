@@ -1,0 +1,11 @@
+{
+  "id": "ans_example",
+  "lane": "green",
+  "answer": "Use SOP 4.2 steps A–F; verify gauges; record signoff in Form RX-12.",
+  "citations": [{"doc_id":"sop-42","section":"4.2","span":[10,120]}],
+  "doc_hashes": [{"doc_id":"sop-42","sha256":"deadbeef"}],
+  "model": {"name":"azure-openai:gpt-4o-mini","version":"v1","selector_reason":"task=extractive; lane=green"},
+  "signature": {"key_id": "sig://local", "sig": "abcd1234"},
+  "metrics": {"latency_ms": 420.0, "cost_usd": 0.003}
+}
+

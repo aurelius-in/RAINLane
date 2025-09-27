@@ -1,0 +1,9 @@
+question: "what is the sterile changeover checklist?"
+answer: "Use SOP 4.2 steps A–F; verify gauges; record signoff in Form RX-12."
+citations:
+  - doc_id: sop-42
+    section: "4.2"
+    span: [10, 120]
+roles:
+  - Operator
+

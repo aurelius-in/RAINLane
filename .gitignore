@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+artifacts/*
+!.keep
+*.sbom.json
+node_modules/
+dist/
+.venv/
+.envrc
+

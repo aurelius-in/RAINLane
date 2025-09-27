@@ -1,0 +1,4 @@
+max_tokens_per_chunk: 1200
+allowed_doc_families: ["SOP", "Work Instruction", "Policy"]
+
+
