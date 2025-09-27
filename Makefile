@@ -9,5 +9,9 @@ evals:
 	python evals/harness/run.py
 redteam.run:
 	python redteam/runners/run_redteam.py
+test:
+	pytest -q
+fmt:
+	black . && isort .
 
 
