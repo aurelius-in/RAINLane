@@ -1,0 +1,17 @@
+name: schema
+on: [workflow_dispatch]
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker build -t rainlane-api -f Dockerfile.api .
+          docker run -d -p 8000:8000 rainlane-api
+          sleep 5
+          curl -s http://127.0.0.1:8000/openapi.json > artifacts/openapi.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openapi
+          path: artifacts/openapi.json
+
