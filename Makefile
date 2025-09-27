@@ -13,5 +13,9 @@ test:
 	pytest -q
 fmt:
 	black . && isort .
+lint:
+	black --check . && isort --check-only .
+precommit:
+	pre-commit run --all-files || true
 
 
