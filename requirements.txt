@@ -12,5 +12,5 @@ pdfplumber>=0.10.3
 opentelemetry-api>=1.26.0
 opentelemetry-sdk>=1.26.0
 opentelemetry-instrumentation-fastapi>=0.47b0
-opentelemetry-exporter-otlp>=1.26.0
+opentelemetry-exporter-otlp>=1.41.1
 
